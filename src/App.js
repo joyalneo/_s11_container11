@@ -14,9 +14,11 @@ const App = () => {
     setSystem({
       module: './layout',
       scope: 'layout',
-      url: `http://localhost:3001/remoteEntry.js`,
+      url: `${env.BLOX_ENV_URL_layout}/remoteEntry.js`,
     });
   };
+
+  console.log(env);
 
   const { Component: FederatedComponent, errorLoading } = useFederatedComponent(
     system?.url,

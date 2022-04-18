@@ -6,7 +6,7 @@ const Candidates = () => {
   const system = {
     module: './candidates',
     scope: 'candidates',
-    url: 'http://localhost:3002/remoteEntry.js',
+    url: `${process.env.BLOX_ENV_URL_candidate_listing}/remoteEntry.js`,
   };
 
   const { Component: FederatedComponent, errorLoading } = useFederatedComponent(
