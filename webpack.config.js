@@ -1,22 +1,21 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
 
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
-import webpack from 'webpack'
-
-const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin
+const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
 // For testing take pull from Appblox/node-blox-sdk and npm install from path
-import { env } from 'node-blox-sdk'
-env.init()
+import { env } from 'node-blox-sdk';
+env.init();
 
-const __dirname = path.resolve()
+const __dirname = path.resolve();
 
 export default {
   entry: './src/index',
   mode: 'development',
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 4001,
+    port: 3000,
   },
   externals: {
     env: JSON.stringify(process.env),
@@ -27,22 +26,29 @@ export default {
   module: {
     rules: [
       {
-        test: /.js?$/,
+        test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
         options: {
           presets: ['@babel/preset-react'],
         },
       },
       {
-        test: /.m?js/,
-        type: 'javascript/auto',
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: 'url-loader',
+        },
       },
       {
-        test: /.m?js/,
-        resolve: {
-          fullySpecified: false,
-        },
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -61,18 +67,10 @@ export default {
           singleton: true, // only a single version of the shared module is allowed
           version: '^17.0.2',
         },
-        'react-redux': {
-          import: 'react-redux', // the "react" package will be used a provided and fallback module
-          shareKey: 'react-redux', // under this name the shared module will be placed in the share scope
-          shareScope: 'default', // share scope with this name will be used
-          singleton: true, // only a single version of the shared module is allowed
-          version: '^7.2.5',
-        },
       },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
   ],
-}
-
+};
