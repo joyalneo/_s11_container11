@@ -18,8 +18,6 @@ const App = () => {
     });
   };
 
-  console.log(env);
-
   const { Component: FederatedComponent, errorLoading } = useFederatedComponent(
     system?.url,
     system?.scope,
