@@ -33,7 +33,7 @@ const App = () => {
     if (isLoggedIn) {
       setLayout();
     }
-  }, [isLoggedIn]);
+  }, []);
 
   // useEffect(() => {
   //   setLayout();
@@ -48,12 +48,12 @@ const App = () => {
               ? `Error loading module "${module}"`
               : FederatedComponent && (
                   <FederatedComponent>
-                    <AppRoute isLoggedIn={isLoggedIn} />
+                    <AppRoute />
                   </FederatedComponent>
                 )}
           </div>
         ) : (
-          <AppRoute isLoggedIn={isLoggedIn} />
+          <AppRoute />
         )}
       </div>
     </React.Suspense>
