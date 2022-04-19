@@ -53,7 +53,7 @@ const App = () => {
                 )}
           </div>
         ) : (
-          <div>Loading</div>
+          <AppRoute isLoggedIn={isLoggedIn} />
         )}
       </div>
     </React.Suspense>
