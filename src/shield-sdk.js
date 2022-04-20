@@ -130,8 +130,6 @@ export const verifyLogin = async () => {
   if (!token) {
     const authorizationUrl = getAuthUrl();
     console.log("🚀 ~ file: shield-sdk.js ~ line 132 ~ verifyLogin ~ authorizationUrl", authorizationUrl)
-
-
     window.location = authorizationUrl;
   } else {
     const isValid = await validateAccessToken();
@@ -231,7 +229,7 @@ async function sendCodeToServer(code) {
     console.log('🚀  file: index.js  line 50  sendCodeToServer  data', data);
     return data;
   } catch (error) {
-    console.log(error);
+    console.log("🚀 ~ file: shield-sdk.js ~ line 232 ~ sendCodeToServer ~ error", error)
   }
 }
 
