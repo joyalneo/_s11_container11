@@ -30,7 +30,7 @@ const App = () => {
     const isLoggedinn = await shield.verifyLogin();
     setIsLoggedIn(isLoggedinn);
 
-    if (isLoggedIn) {
+    if (isLoggedinn) {
       setLayout();
     }
   }, []);
