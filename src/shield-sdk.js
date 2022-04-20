@@ -1,6 +1,7 @@
 import qs from 'query-string';
 
-const base =`${window.location.origin}/container`;
+
+const base = !window.location.origin.includes("localhost") ? `${window.location.origin}/container` : window.location.origin;
 let clientId = null;
 const authorizationEndpoint = 'https://shield-dev.appblox.io/login';
 
