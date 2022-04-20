@@ -129,11 +129,15 @@ export const verifyLogin = async () => {
   let token = tokenStore.getToken();
   if (!token) {
     const authorizationUrl = getAuthUrl();
+    console.log("🚀 ~ file: shield-sdk.js ~ line 132 ~ verifyLogin ~ authorizationUrl", authorizationUrl)
+
+
     window.location = authorizationUrl;
   } else {
     const isValid = await validateAccessToken();
     if (!isValid) {
       const authorizationUrl = getAuthUrl();
+      console.log("🚀 ~ file: shield-sdk.js ~ line 140 ~ verifyLogin ~ isValid", authorizationUrl)
       window.location = authorizationUrl;
     }
     return isValid;
@@ -194,6 +198,8 @@ export const init = async function (id) {
   // var cookie;
   if (code) {
     const tokenData = await sendCodeToServer(code);
+    console.log("🚀 ~ file: shield-sdk.js ~ line 197 ~ init ~ tokenData", tokenData)
+    
     if (tokenData.success && tokenData.data) {
       tokenStore.setToken(tokenData.data.ab_at);
       tokenStore.setExpiry(tokenData.data.expires_in);
