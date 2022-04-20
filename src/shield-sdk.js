@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-const base = `${window.location.origin}/container`;
+const base =`${window.location.origin}/container`;
 let clientId = null;
 const authorizationEndpoint = 'https://shield-dev.appblox.io/login';
 

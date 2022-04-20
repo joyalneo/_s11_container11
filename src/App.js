@@ -53,7 +53,7 @@ const App = () => {
                 )}
           </div>
         ) : (
-          <AppRoute />
+          <div>Loading</div>
         )}
       </div>
     </React.Suspense>
