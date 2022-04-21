@@ -34,6 +34,7 @@ const App = () => {
 
     await shield.init('pRntLlwaYV2OuN_1Kc3Ua-6255');
     const isLoggedinn = await shield.verifyLogin();
+    console.log('entered', isLoggedinn);
     setIsLoggedIn(isLoggedinn);
 
     if (isLoggedIn) setLayout();
