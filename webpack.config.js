@@ -48,6 +48,9 @@ export default {
       },
     ],
   },
+  optimization: {
+    minimize: false,
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
