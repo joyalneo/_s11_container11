@@ -7,13 +7,13 @@ const AppRoute = () => {
   );
 
   return (
-    <Candidates />
-    // <Suspense fallback={''}>
-    //   <BrowserRouter>
-    //     <Route path='/' component={Candidates} exact />
-    //     <Route path='/candidates' component={Candidates} />
-    //   </BrowserRouter>
-    // </Suspense>
+    // <Candidates />
+    <Suspense fallback={''}>
+      <Switch>
+        <Route path='/' component={Candidates} exact />
+        <Route path='/candidates' component={Candidates} />
+      </Switch>
+    </Suspense>
   );
 };
 
