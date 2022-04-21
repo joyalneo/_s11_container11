@@ -199,6 +199,7 @@ const getAuthUrl = () => {
 };
 
 export const init = async function (id) {
+  console.log('init first line');
   clientId = id;
   const code = getCodeInUrl();
   // var cookie;
