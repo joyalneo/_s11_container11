@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import AppRoute from '../common/routes/AppRoute.js';
-import { useFederatedComponent } from 'ab-federation-helpers';
-import { shield } from './shield-sdk.js';
-import './assets/css/main.scss';
-import env from 'env';
+import React, { useEffect, useState } from "react";
+import AppRoute from "../common/routes/AppRoute.js";
+import { useFederatedComponent } from "ab-federation-helpers";
+import { shield } from "./shield-sdk.js";
+import "./assets/css/main.scss";
+import env from "env";
 
 const App = () => {
   const [system, setSystem] = useState(undefined);
@@ -12,8 +12,8 @@ const App = () => {
 
   const setLayout = () => {
     setSystem({
-      module: './layout',
-      scope: 'layout',
+      module: "./layout",
+      scope: "layout",
       url: `${env.BLOX_ENV_URL_layout}/remoteEntry.js`,
     });
   };
@@ -26,22 +26,23 @@ const App = () => {
   );
 
   useEffect(async () => {
-    await shield.init('pRntLlwaYV2OuN_1Kc3Ua-6255');
+
+    console.log("App.js: useEffect isLoggedIn", isLoggedIn);
+
+    if (isLoggedIn) return;
+
+    console.log("App.js: useEffect");
+
+    await shield.init("pRntLlwaYV2OuN_1Kc3Ua-6255");
     const isLoggedinn = await shield.verifyLogin();
     setIsLoggedIn(isLoggedinn);
 
-    if (isLoggedinn) {
-      setLayout();
-    }
+    if (isLoggedinn) setLayout();
   }, []);
 
-  // useEffect(() => {
-  //   setLayout();
-  // }, []);
-
   return (
-    <React.Suspense fallback={''}>
-      <div className='App'>
+    <React.Suspense fallback={""}>
+      <div className="App">
         {isLoggedIn ? (
           <div>
             {errorLoading

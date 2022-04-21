@@ -1,8 +1,6 @@
 import qs from 'query-string';
 
-const base = window.location.origin.includes('localhost')
-  ? window.location.origin
-  : `${window.location.origin}/container`;
+const base = !window.location.origin.includes("localhost") ? `${window.location.origin}/container` : window.location.origin;
 let clientId = null;
 const authorizationEndpoint = 'https://shield-dev.appblox.io/login';
 
@@ -130,11 +128,13 @@ export const verifyLogin = async () => {
   let token = tokenStore.getToken();
   if (!token) {
     const authorizationUrl = getAuthUrl();
+    console.log("🚀 ~ file: shield-sdk.js ~ line 132 ~ verifyLogin ~ authorizationUrl", authorizationUrl)
     window.location = authorizationUrl;
   } else {
     const isValid = await validateAccessToken();
     if (!isValid) {
       const authorizationUrl = getAuthUrl();
+      console.log("🚀 ~ file: shield-sdk.js ~ line 140 ~ verifyLogin ~ isValid", authorizationUrl)
       window.location = authorizationUrl;
     }
     return isValid;
@@ -195,6 +195,8 @@ export const init = async function (id) {
   // var cookie;
   if (code) {
     const tokenData = await sendCodeToServer(code);
+    console.log("🚀 ~ file: shield-sdk.js ~ line 197 ~ init ~ tokenData", tokenData)
+    
     if (tokenData.success && tokenData.data) {
       tokenStore.setToken(tokenData.data.ab_at);
       tokenStore.setExpiry(tokenData.data.expires_in);
@@ -226,7 +228,7 @@ async function sendCodeToServer(code) {
     console.log('🚀  file: index.js  line 50  sendCodeToServer  data', data);
     return data;
   } catch (error) {
-    console.log(error);
+    console.log("🚀 ~ file: shield-sdk.js ~ line 232 ~ sendCodeToServer ~ error", error)
   }
 }
 
