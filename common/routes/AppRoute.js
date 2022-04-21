@@ -11,6 +11,7 @@ const AppRoute = () => {
     <Suspense fallback={''}>
       <Switch>
         <Route path='/' component={Candidates} exact />
+        <Route path='/container' component={Candidates} />
         <Route path='/candidates' component={Candidates} />
       </Switch>
     </Suspense>

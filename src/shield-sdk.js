@@ -9,7 +9,7 @@ const authorizationEndpoint = 'https://shield-dev.appblox.io/login';
 const getCodeInUrl = function () {
   const parsedQuery = qs.parseUrl(window.location.href);
   const code = parsedQuery.query.code;
-  console.log(parsedQuery.query);
+  console.log('inside getcodeINURL', parsedQuery.query);
   return code;
 };
 
