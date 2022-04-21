@@ -1,12 +1,15 @@
 import qs from 'query-string';
 
-const base = !window.location.origin.includes("localhost") ? `${window.location.origin}/container` : window.location.origin;
+const base = !window.location.origin.includes('localhost')
+  ? `${window.location.origin}/container`
+  : window.location.origin;
 let clientId = null;
 const authorizationEndpoint = 'https://shield-dev.appblox.io/login';
 
 const getCodeInUrl = function () {
   const parsedQuery = qs.parseUrl(window.location.href);
   const code = parsedQuery.query.code;
+  console.log(parsedQuery.query);
   return code;
 };
 
@@ -128,13 +131,19 @@ export const verifyLogin = async () => {
   let token = tokenStore.getToken();
   if (!token) {
     const authorizationUrl = getAuthUrl();
-    console.log("🚀 ~ file: shield-sdk.js ~ line 132 ~ verifyLogin ~ authorizationUrl", authorizationUrl)
+    console.log(
+      '🚀 ~ file: shield-sdk.js ~ line 132 ~ verifyLogin ~ authorizationUrl',
+      authorizationUrl
+    );
     window.location = authorizationUrl;
   } else {
     const isValid = await validateAccessToken();
     if (!isValid) {
       const authorizationUrl = getAuthUrl();
-      console.log("🚀 ~ file: shield-sdk.js ~ line 140 ~ verifyLogin ~ isValid", authorizationUrl)
+      console.log(
+        '🚀 ~ file: shield-sdk.js ~ line 140 ~ verifyLogin ~ isValid',
+        authorizationUrl
+      );
       window.location = authorizationUrl;
     }
     return isValid;
@@ -193,17 +202,22 @@ export const init = async function (id) {
   clientId = id;
   const code = getCodeInUrl();
   // var cookie;
+  console.log(code);
   if (code) {
     const tokenData = await sendCodeToServer(code);
-    console.log("🚀 ~ file: shield-sdk.js ~ line 197 ~ init ~ tokenData", tokenData)
-    
+    console.log(
+      '🚀 ~ file: shield-sdk.js ~ line 197 ~ init ~ tokenData',
+      code,
+      tokenData
+    );
+
     if (tokenData.success && tokenData.data) {
       tokenStore.setToken(tokenData.data.ab_at);
       tokenStore.setExpiry(tokenData.data.expires_in);
       tokenStore.setRefreshToken(tokenData.data.ab_rt);
       tokenStore.initRefreshCycle();
     }
-  }
+  } else console.log('not entered');
 };
 
 export const shield = {
@@ -228,7 +242,10 @@ async function sendCodeToServer(code) {
     console.log('🚀  file: index.js  line 50  sendCodeToServer  data', data);
     return data;
   } catch (error) {
-    console.log("🚀 ~ file: shield-sdk.js ~ line 232 ~ sendCodeToServer ~ error", error)
+    console.log(
+      '🚀 ~ file: shield-sdk.js ~ line 232 ~ sendCodeToServer ~ error',
+      error
+    );
   }
 }
 
