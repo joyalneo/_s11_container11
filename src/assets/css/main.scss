@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+body {
+  background-color: #f6f8fa;
+  font-family: "Open Sans", sans-serif;
+}
+.border-primary {
+  border-color: #e1e4e8;
+}
+.border-green {
+  border-color: #28a745;
+}
+.text-gray-dark {
+  color: #24292e;
+}
+.text-gray-light {
+  color: #6a737d;
+}
+.bg-gray-dark {
+  background-color: #24292e;
+}
+.bg-gray-light {
+  background-color: #fafbfc;
+}
+.popup-bg {
+  background: rgba(0, 0, 0, 0.2);
+}
+.bg-primary {
+  background-color: #6f42c1;
+  &.bg-primary-hover {
+    &:hover {
+      background-color: #4c2888;
+    }
+  }
+}
+.bg-green {
+  background-color: #28a745;
+}
+.text-purple {
+  color: #6f42c1;
+}
+.text-blue {
+  color: #0366d6;
+}
+.error-msg-bg {
+  background-color: #ffdce0;
+}
+.error-msg-border {
+  border-color: #d73a49;
+}
+.has-error {
+  border-color: #d73a49;
+}
+input:focus {
+  border: 1px solid #6f42c1;
+  box-shadow: 0px 0px 0px 3px #e6dcfd;
+}
+.textarea-primary:focus {
+  border: 1px solid #6f42c1;
+  box-shadow: 0px 0px 0px 3px #e6dcfd;
+}
+.textarea-primary {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5da;
+    border-radius: 24px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #bcbdbe;
+  }
+}
+.focus-shadow-none:focus {
+  box-shadow: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  &.delay-3 {
+    animation-delay: 300ms;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+.clearfix {
+  &:after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+.sidemenu-dropdown-container {
+  @extend .bg-gray-light;
+}
+.filter-chkbox {
+  @extend .border-primary;
+}
+input.peer:checked + .filter-chkbox {
+  background: url("../img/icons/tick.svg") no-repeat center center #6f42c1;
+}
+.search-input {
+  background: url("../img/icons/search-icon.svg") no-repeat left 8px center #fff;
+}
+.scroll-bar-hide {
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+}
